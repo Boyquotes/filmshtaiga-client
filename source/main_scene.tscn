@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=3 uid="uid://khgvw5mdlup7"]
+
+[ext_resource type="Theme" uid="uid://3c4wfofywo74" path="res://themes/main_theme.tres" id="1_xcr1w"]
+[ext_resource type="Script" path="res://source/main_scene.gd" id="1_yn1l1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_327vd"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 3
+border_color = Color(0.501961, 0.164706, 0.521569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j6rw"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 1)
+
+[node name="MainScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xcr1w")
+script = ExtResource("1_yn1l1")
+
+[node name="RootContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopBarPanel" type="PanelContainer" parent="RootContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_327vd")
+
+[node name="MarginContainer" type="MarginContainer" parent="RootContainer/TopBarPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 10
+
+[node name="TopBarHbox" type="HBoxContainer" parent="RootContainer/TopBarPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"
+
+[node name="HomeButton" type="Button" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Home"
+
+[node name="Spacer2" type="Control" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SearchBar" type="LineEdit" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+custom_minimum_size = Vector2(320, 48)
+layout_mode = 2
+size_flags_vertical = 4
+placeholder_text = "Search"
+
+[node name="Spacer" type="Control" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UserName" type="Label" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.501961, 0.164706, 0.521569, 1)
+theme_override_font_sizes/font_size = 32
+text = "User"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="Button" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+custom_minimum_size = Vector2(160, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Exit"
+
+[node name="PanelContainer" type="PanelContainer" parent="RootContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7j6rw")
+
+[node name="MarginContainer" type="MarginContainer" parent="RootContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 9
+
+[connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="text_submitted" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/SearchBar" to="." method="_on_search_bar_text_submitted"]
+[connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/ExitButton" to="." method="_on_exit_button_pressed"]

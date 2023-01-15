@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjqisybqtcggq"]
+
+[ext_resource type="Theme" uid="uid://3c4wfofywo74" path="res://themes/main_theme.tres" id="1_uc8wg"]
+[ext_resource type="Script" path="res://source/episode_display.gd" id="2_ge7qd"]
+
+[node name="EpisodeDisplay" type="HBoxContainer"]
+offset_right = 1.0
+offset_bottom = 39.0
+theme = ExtResource("1_uc8wg")
+script = ExtResource("2_ge7qd")
+
+[node name="EpisodeTitle" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "1. Name"
+text_overrun_behavior = 3
+
+[node name="CopyUrlButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Copy URL"
+
+[node name="Spacer" type="Control" parent="."]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="CopyUrlButton" to="." method="_on_copy_url_button_pressed"]

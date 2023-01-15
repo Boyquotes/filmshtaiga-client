@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://cygbcm1s8e5d"]
+
+[ext_resource type="Script" path="res://source/front_page.gd" id="1_duqy3"]
+
+[node name="FrontPage" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_duqy3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " Libraries"
+
+[node name="LibraryContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40

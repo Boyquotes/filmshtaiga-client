@@ -1,0 +1,123 @@
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://3c4wfofywo74"]
+
+[ext_resource type="FontFile" uid="uid://beuq1e41ay2rk" path="res://themes/Exo_2/static/Exo2-Regular.ttf" id="1_bcie4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yv1ga"]
+bg_color = Color(0.0823529, 0, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.501961, 0.164706, 0.521569, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tcs3v"]
+bg_color = Color(0.0823529, 0, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.501961, 0.164706, 0.521569, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keot5"]
+bg_color = Color(0.0823529, 0, 0.313726, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu7n3"]
+bg_color = Color(0.0823529, 0, 0.313726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.741176, 0.243137, 0.768627, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2e6i"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.0352941, 0, 0.141176, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.501961, 0.164706, 0.521569, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vepsw"]
+content_margin_left = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.0352941, 0, 0.141176, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ick3r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn0b4"]
+bg_color = Color(0.501961, 0.164706, 0.521569, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke24g"]
+bg_color = Color(0.729412, 0.239216, 0.756863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v3h3"]
+bg_color = Color(0.729412, 0.239216, 0.756863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+default_font = ExtResource("1_bcie4")
+default_font_size = 18
+Button/colors/font_color = Color(0.501961, 0.164706, 0.521569, 1)
+Button/colors/font_focus_color = Color(0.501961, 0.164706, 0.521569, 1)
+Button/colors/font_hover_color = Color(0.501961, 0.164706, 0.521569, 1)
+Button/colors/font_hover_pressed_color = Color(0.501961, 0.164706, 0.521569, 1)
+Button/colors/font_pressed_color = Color(0.501961, 0.164706, 0.521569, 1)
+Button/font_sizes/font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_yv1ga")
+Button/styles/hover = SubResource("StyleBoxFlat_tcs3v")
+Button/styles/normal = SubResource("StyleBoxFlat_keot5")
+Button/styles/pressed = SubResource("StyleBoxFlat_yu7n3")
+Label/colors/font_color = Color(0.839216, 0.839216, 0.839216, 1)
+LineEdit/colors/caret_color = Color(0.501961, 0.164706, 0.521569, 1)
+LineEdit/colors/font_color = Color(0.501961, 0.164706, 0.521569, 1)
+LineEdit/colors/font_placeholder_color = Color(0.223529, 0.223529, 0.223529, 1)
+LineEdit/colors/selection_color = Color(0.501961, 0.164706, 0.521569, 1)
+LineEdit/font_sizes/font_size = 32
+LineEdit/styles/focus = SubResource("StyleBoxFlat_m2e6i")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_vepsw")
+Panel/styles/panel = SubResource("StyleBoxFlat_ick3r")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_tn0b4")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ke24g")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_8v3h3")
