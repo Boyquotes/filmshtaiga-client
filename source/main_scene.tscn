@@ -82,12 +82,18 @@ text = "User"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ExitButton" type="Button" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
+[node name="SettingsButton" type="MenuButton" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
 custom_minimum_size = Vector2(160, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Exit"
+text = "Settings"
+flat = false
+item_count = 2
+popup/item_0/text = "Change VLC path"
+popup/item_0/id = 0
+popup/item_1/text = "Log Out"
+popup/item_1/id = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="RootContainer"]
 layout_mode = 2
@@ -101,7 +107,34 @@ theme_override_constants/margin_top = 9
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 9
 
+[node name="VlcDirPopup" type="PopupPanel" parent="."]
+transparent_bg = true
+size = Vector2i(420, 76)
+
+[node name="MarginContainer" type="MarginContainer" parent="VlcDirPopup"]
+offset_right = 420.0
+offset_bottom = 76.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VlcDirPopup/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VlcDirPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.501961, 0.164706, 0.521569, 1)
+theme_override_font_sizes/font_size = 24
+text = "VLC Directory:"
+horizontal_alignment = 1
+
+[node name="VlcDirEdit" type="LineEdit" parent="VlcDirPopup/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+
 [connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="text_submitted" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/SearchBar" to="." method="_on_search_bar_text_submitted"]
-[connection signal="pressed" from="RootContainer/TopBarPanel/MarginContainer/TopBarHbox/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="text_changed" from="VlcDirPopup/MarginContainer/VBoxContainer/VlcDirEdit" to="." method="_on_vlc_dir_edit_text_changed"]

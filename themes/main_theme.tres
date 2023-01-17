@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=12 format=3 uid="uid://3c4wfofywo74"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://3c4wfofywo74"]
 
 [ext_resource type="FontFile" uid="uid://beuq1e41ay2rk" path="res://themes/Exo_2/static/Exo2-Regular.ttf" id="1_bcie4"]
 
@@ -75,22 +75,35 @@ corner_radius_bottom_left = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ick3r"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hh8lt"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fkqe"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w62pb"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tn0b4"]
-bg_color = Color(0.501961, 0.164706, 0.521569, 1)
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ke24g"]
-bg_color = Color(0.729412, 0.239216, 0.756863, 1)
+bg_color = Color(0.447059, 0.447059, 0.447059, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v3h3"]
-bg_color = Color(0.729412, 0.239216, 0.756863, 1)
+bg_color = Color(0.447059, 0.447059, 0.447059, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -117,7 +130,13 @@ LineEdit/colors/selection_color = Color(0.501961, 0.164706, 0.521569, 1)
 LineEdit/font_sizes/font_size = 32
 LineEdit/styles/focus = SubResource("StyleBoxFlat_m2e6i")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_vepsw")
+MenuButton/font_sizes/font_size = 32
 Panel/styles/panel = SubResource("StyleBoxFlat_ick3r")
+PopupMenu/colors/font_color = Color(0.501961, 0.164706, 0.521569, 1)
+PopupMenu/colors/font_hover_color = Color(0.501961, 0.164706, 0.521569, 1)
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_hh8lt")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_0fkqe")
+PopupPanel/styles/panel = SubResource("StyleBoxFlat_w62pb")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_tn0b4")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_ke24g")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_8v3h3")

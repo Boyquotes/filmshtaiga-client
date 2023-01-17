@@ -25,6 +25,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+clip_children = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -44,6 +45,19 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Title"
 autowrap_mode = 3
+
+[node name="Year" type="Label" parent="InfoContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+text = "Year"
+
+[node name="Control" type="Control" parent="InfoContainer"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Overview" type="RichTextLabel" parent="InfoContainer"]
+layout_mode = 2
+fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(180, 0)

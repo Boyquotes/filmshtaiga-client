@@ -28,6 +28,10 @@ var image_headers: PackedStringArray = [
 	", ".join(weird_header)
 ]
 
+var video_headers: PackedStringArray = [
+	"Content-Type: application/json",
+	"accept: video/*"
+]
 
 
 func login(server: String, username: String, password: String) -> Variant:
@@ -52,7 +56,7 @@ func item_search(search_term: String) -> Array:
 
 
 func get_items(parent_id: String = "") -> Array:
-	var path = ("/Items?userId=%s&parentId=%s&enableImages=true&sortBy=SortName"
+	var path = ("/Items?userId=%s&parentId=%s&enableImages=true&sortBy=SortName&fields=Overview"
 			% [Global.user_id, parent_id])
 	var response = await _http_request(path, HTTPClient.METHOD_GET, json_headers)
 	if response:
@@ -70,6 +74,10 @@ func request_image(item_id: String, image_type: String, max_height:= 220, max_wi
 
 func get_video_stream(item_id):
 	return "%s/Items/%s/Download?api_key=%s" % [url, item_id, Global.access_token]
+
+
+func get_video_stream_2(item_id):
+	return "%s/Videos/%s/stream.mkv" % [url, item_id]
 
 
 func _http_request(path: String, method: int, headers: PackedStringArray, body: String = ""):

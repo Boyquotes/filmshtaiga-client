@@ -10,11 +10,16 @@ var previous_subscene: Node
 @onready var user_name_label:= (
 	$RootContainer/TopBarPanel/MarginContainer/TopBarHbox/UserName)
 @onready var margin_container:= $RootContainer/PanelContainer/MarginContainer
+@onready var settings_button:= $RootContainer/TopBarPanel/MarginContainer/TopBarHbox/SettingsButton
+@onready var vlc_dir_popup:= $VlcDirPopup
+@onready var vlc_dir_edit:= $VlcDirPopup/MarginContainer/VBoxContainer/VlcDirEdit
 
 
 
 func _ready():
 	user_name_label.set_text(Global.user_name)
+	settings_button.get_popup().id_pressed.connect(_on_settings_menu_id_pressed)
+	vlc_dir_edit.set_text(Global.vlc_path)
 	go_to_front_page()
 
 
@@ -80,5 +85,14 @@ func _on_home_button_pressed():
 	go_to_front_page()
 
 
-func _on_exit_button_pressed():
-	get_tree().quit()
+func _on_settings_menu_id_pressed(id):
+	match id:
+		0: # Change VLC path
+			vlc_dir_popup.popup_centered()
+		1: # Log Out
+			pass
+
+
+func _on_vlc_dir_edit_text_changed(new_text):
+	Global.vlc_path = new_text
+	print(Global.vlc_path)

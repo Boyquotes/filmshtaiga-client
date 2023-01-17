@@ -16,7 +16,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_hgnsd")
+theme_override_constants/separation = 36
 script = ExtResource("2_tf5hk")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -36,10 +40,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch_mode = 3
 
-[node name="CopyUrlButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(360, 64)
 layout_mode = 2
-text = "Copy Stream URL"
+text = "Play"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -47,8 +51,33 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 48
 text = "Title"
+autowrap_mode = 3
 
-[connection signal="pressed" from="VBoxContainer/CopyUrlButton" to="." method="_on_copy_url_button_pressed"]
+[node name="Year" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+text = "Year"
+
+[node name="Runtime" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+text = "Duration"
+
+[node name="Control" type="Control" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+
+[node name="Overview" type="RichTextLabel" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Overview
+"
+fit_content_height = true
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

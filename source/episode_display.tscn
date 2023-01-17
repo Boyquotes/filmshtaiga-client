@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bjqisybqtcggq"]
+[gd_scene load_steps=5 format=3 uid="uid://bjqisybqtcggq"]
 
 [ext_resource type="Theme" uid="uid://3c4wfofywo74" path="res://themes/main_theme.tres" id="1_uc8wg"]
 [ext_resource type="Script" path="res://source/episode_display.gd" id="2_ge7qd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5oan"]
+bg_color = Color(0.870588, 0.870588, 0.870588, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2er3"]
+bg_color = Color(0.545098, 0.545098, 0.545098, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="EpisodeDisplay" type="HBoxContainer"]
 offset_right = 1.0
@@ -16,14 +30,28 @@ theme_override_font_sizes/font_size = 20
 text = "1. Name"
 text_overrun_behavior = 3
 
-[node name="CopyUrlButton" type="Button" parent="."]
+[node name="Runtime" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.462745, 0.462745, 0.462745, 1)
+
+[node name="PlayButton" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
-text = "Copy URL"
+theme_override_styles/normal = SubResource("StyleBoxFlat_j5oan")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j2er3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_j2er3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_j2er3")
+text = "Play"
 
 [node name="Spacer" type="Control" parent="."]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[connection signal="pressed" from="CopyUrlButton" to="." method="_on_copy_url_button_pressed"]
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

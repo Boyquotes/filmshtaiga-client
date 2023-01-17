@@ -8,28 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "HBoxContainer",
-"class": &"EpisodeDisplay",
-"language": &"GDScript",
-"path": "res://source/episode_display.gd"
-}, {
-"base": "ScrollContainer",
-"class": &"FrontPage",
-"language": &"GDScript",
-"path": "res://source/front_page.gd"
-}, {
-"base": "Control",
-"class": &"ItemDisplay",
-"language": &"GDScript",
-"path": "res://source/item_display.gd"
-}]
-_global_script_class_icons={
-"EpisodeDisplay": "",
-"FrontPage": "",
-"ItemDisplay": ""
-}
-
 [application]
 
 config/name="filmshtaiga"
@@ -47,6 +25,10 @@ Global="*res://source/global.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+
+[editor]
+
+export/convert_text_resources_to_binary=true
 
 [input]
 

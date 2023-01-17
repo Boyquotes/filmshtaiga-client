@@ -13,11 +13,17 @@ const SCENE_PATH = {
 	"episode_display": "res://source/episode_display.tscn"
 }
 
+const DEFAULT_VLC_PATHS = {
+	"Windows": "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe",
+	"Linux": "",
+}
+
 var current_scene = null
 var access_token: String
 var server_id: String # what does it do?
 var user_id: String
 var user_name: String
+var vlc_path: String = DEFAULT_VLC_PATHS[OS.get_name()]
 
 
 

@@ -6,11 +6,10 @@ class_name EpisodeDisplay
 var id: String
 
 @onready var episode_title:= $EpisodeTitle
-@onready var button:= $CopyUrlButton
-
-func _ready():
-	pass
+@onready var button:= $PlayButton
+@onready var runtime_label:= $Runtime
 
 
-func _on_copy_url_button_pressed():
-	DisplayServer.clipboard_set(JellyfinApi.get_video_stream(id))
+
+func _on_play_button_pressed():
+	OS.create_process(Global.vlc_path, [JellyfinApi.get_video_stream(id)])
