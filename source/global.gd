@@ -15,7 +15,6 @@ const SCENE_PATH = {
 
 const DEFAULT_VLC_PATHS = {
 	"Windows": "C:/Program Files (x86)/VideoLAN/VLC/vlc.exe",
-	"Linux": "",
 }
 
 var current_scene = null

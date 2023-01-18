@@ -17,7 +17,8 @@ func _ready():
 	year_label.set_text(str(item_info["ProductionYear"]))
 	var runtime_min: int = item_info["RunTimeTicks"] * 1e-7 / 60
 	runtime_label.set_text(str(runtime_min) + " min")
-	overview_label.set_text(item_info["Overview"])
+	if item_info.has("Overview"):
+		overview_label.set_text(item_info["Overview"])
 	var image = await JellyfinApi.request_image(item_info["Id"], "Primary", 500, 400)
 	movie_image_rect.set_texture(image)
 

@@ -5,26 +5,18 @@ class_name ItemDisplay
 
 signal element_pressed(element: ItemDisplay)
 
-enum Type {COLLECTION_FOLDER, MOVIE, SERIES, SEASON, EPISODE, BOX_SET}
-
 const HOVER_MODULATE_COLOR = Color("cccccc")
 
 var info: Dictionary
-var item_id: String
-var is_folder: bool
-var type: Type
 
 @onready var texture_button:= $PanelContainer/TextureButton
 
 
 
 func _ready():
-	set_type(info["Type"])
-	item_id = info["Id"]
-	is_folder = info["IsFolder"]
-	if type == Type.COLLECTION_FOLDER:
+	if info["Type"] == "CollectionFolder":
 		$Label.set_text("")
-	elif type == Type.MOVIE or type == Type.SEASON or type == Type.SERIES:
+	elif info["Type"] == "Movie" or info["Type"] == "Season" or info["Type"] == "Series":
 		if info.has("ProductionYear"):
 			$YearLabel.set_text(str(info["ProductionYear"]))
 		$Label.set_text(info["Name"])
@@ -35,22 +27,6 @@ func _ready():
 
 func set_image(new_texture: ImageTexture):
 	texture_button.set_texture_normal(new_texture)
-
-
-func set_type(type_string: String):
-	match type_string:
-		"CollectionFolder":
-			type = Type.COLLECTION_FOLDER
-		"Movie":
-			type = Type.MOVIE
-		"Series":
-			type = Type.SERIES
-		"Season":
-			type = Type.SEASON
-		"Episode":
-			type = Type.EPISODE
-		"BoxSet":
-			type = Type.BOX_SET
 
 
 func _on_texture_button_pressed():

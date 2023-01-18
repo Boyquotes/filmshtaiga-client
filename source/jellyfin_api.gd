@@ -4,7 +4,7 @@ extends Node
 
 enum Response {RESULT, CODE, HEADERS, BODY}
 
-var is_authorization_valid:= true
+var wait_for_login:= false
 var url: String
 
 var weird_header: PackedStringArray =[
@@ -28,10 +28,6 @@ var image_headers: PackedStringArray = [
 	", ".join(weird_header)
 ]
 
-var video_headers: PackedStringArray = [
-	"Content-Type: application/json",
-	"accept: video/*"
-]
 
 
 func login(server: String, username: String, password: String) -> Variant:
@@ -44,7 +40,7 @@ func login(server: String, username: String, password: String) -> Variant:
 	return response
 
 
-func item_search(search_term: String) -> Array:
+func item_search(search_term: String) -> Array[Dictionary]:
 	var encoded_term: String = search_term.uri_encode()
 	var path = ("/Items?userId=%s&searchTerm=%s&recursive=true&includeItemTypes=Movie,Series"
 			% [Global.user_id, encoded_term])
@@ -55,7 +51,7 @@ func item_search(search_term: String) -> Array:
 		return []
 
 
-func get_items(parent_id: String = "") -> Array:
+func get_items(parent_id: String = "") -> Array[Dictionary]:
 	var path = ("/Items?userId=%s&parentId=%s&enableImages=true&sortBy=SortName&fields=Overview"
 			% [Global.user_id, parent_id])
 	var response = await _http_request(path, HTTPClient.METHOD_GET, json_headers)
@@ -76,10 +72,6 @@ func get_video_stream(item_id):
 	return "%s/Items/%s/Download?api_key=%s" % [url, item_id, Global.access_token]
 
 
-func get_video_stream_2(item_id):
-	return "%s/Videos/%s/stream.mkv" % [url, item_id]
-
-
 func _http_request(path: String, method: int, headers: PackedStringArray, body: String = ""):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -89,7 +81,7 @@ func _http_request(path: String, method: int, headers: PackedStringArray, body: 
 	http_request.queue_free()
 	if response[Response.CODE] == HTTPClient.RESPONSE_UNAUTHORIZED:
 		print(response[Response.HEADERS])
-		is_authorization_valid = false
+		wait_for_login = true
 		Global.goto_scene(Global.SCENE_PATH["login_screen"])
 	
 	if response[Response.HEADERS].has("Content-Type: image/png"):

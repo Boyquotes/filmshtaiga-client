@@ -1,10 +1,12 @@
 extends ScrollContainer
+class_name CollectionView
 
 
 
 signal element_pressed(element: ItemDisplay)
 
 const ITEMS_TO_LOAD = 40
+const SCROLL_THRESHOLD = 1500
 
 var item_info
 var collection_items: Array[Dictionary]
@@ -16,10 +18,10 @@ var items_last_loaded: int
 @onready var item_container:= $HFlowContainer
 
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	get_v_scroll_bar().scrolling.connect(_on_scrollbar_scrolling)
-	if item_info is Dictionary: #we're in a collection folder
+	if item_info is Dictionary: # we're in a collection folder
 		collection_items = await JellyfinApi.get_items(item_info["Id"])
 	elif item_info is String: # we're displaying search results
 		collection_items = await JellyfinApi.item_search(item_info)
@@ -27,14 +29,14 @@ func _ready():
 
 
 func _on_scrollbar_scrolling():
-	if get_v_scroll() > item_container.size.y - 1500:
+	if get_v_scroll() > item_container.size.y - SCROLL_THRESHOLD:
 		if not index_to_load_next == collection_items.size() and loaded_images == ITEMS_TO_LOAD:
 			create_more_elements()
 
 
 func _gui_input(event):
 	if event.is_action_pressed("scroll_down"):
-		if get_v_scroll() > item_container.size.y - 1500:
+		if get_v_scroll() > item_container.size.y - SCROLL_THRESHOLD:
 			if not index_to_load_next == collection_items.size() and loaded_images == ITEMS_TO_LOAD:
 				create_more_elements()
 
@@ -44,7 +46,7 @@ func create_more_elements():
 	var up_to_index: int = mini(index_to_load_next + ITEMS_TO_LOAD - 1, collection_items.size() - 1)
 	items_last_loaded = up_to_index - index_to_load_next + 1
 	for index in range(index_to_load_next, up_to_index + 1):
-		var item = collection_items[index]
+		var item: Dictionary = collection_items[index]
 		var item_display: ItemDisplay = load(Global.SCENE_PATH["item_display"]).instantiate()
 		item_display.info = item
 		item_container.add_child(item_display)

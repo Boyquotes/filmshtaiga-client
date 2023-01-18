@@ -25,7 +25,7 @@ func _ready():
 	if item_info.has("Overview"):
 		overview_label.set_text(item_info["Overview"])
 	var image = await JellyfinApi.request_image(item_info["Id"], "Primary", 500, 400)
-	var small_image
+	var small_image # to use for every season that doesn't have an image
 	series_image.set_texture(image)
 	season_items = await JellyfinApi.get_items(item_info["Id"])
 	for item in season_items:
@@ -41,12 +41,15 @@ func _ready():
 				small_image = await JellyfinApi.request_image(item_info["Id"], "Primary")
 			item_display.set_image(small_image)
 			loaded_images_counter += 1
+			if loaded_images_counter == season_items.size():
+				for element in season_container.get_children():
+					element.visible = true
 
 
 func _fill_item_image(item_display: ItemDisplay):
 	var image_texture = await JellyfinApi.request_image(item_display.info["Id"], "Primary")
-	loaded_images_counter += 1
 	item_display.set_image(image_texture)
+	loaded_images_counter += 1
 	
 	if loaded_images_counter == season_items.size():
 		for element in season_container.get_children():
@@ -59,12 +62,18 @@ func _on_element_pressed(element: ItemDisplay):
 			season_name.set_text("")
 		else:
 			episode_element.queue_free()
-	episode_items = await JellyfinApi.get_items(element.item_id)
-	season_name.set_text("Season " + str(element.info["IndexNumber"]))
+	episode_items = await JellyfinApi.get_items(element.info["Id"])
+	if element.info.has("IndexNumber"):
+		season_name.set_text("Season " + str(element.info["IndexNumber"]))
 	for item in episode_items:
+		if not item.has("Name"):
+			continue
 		var episode_element: EpisodeDisplay = load(Global.SCENE_PATH["episode_display"]).instantiate()
 		episode_container.add_child(episode_element)
-		episode_element.episode_title.set_text(str(item["IndexNumber"]) + ". " + item["Name"])
+		if item.has("IndexNumber"):
+			episode_element.episode_title.set_text(str(item["IndexNumber"]) + ". " + item["Name"])
+		else:
+			episode_element.episode_title.set_text(str(item["Name"]))
 		if item.has("RunTimeTicks"):
 			var runtime_min: int = item["RunTimeTicks"] * 1e-7 / 60
 			episode_element.runtime_label.set_text(str(runtime_min) + " min")

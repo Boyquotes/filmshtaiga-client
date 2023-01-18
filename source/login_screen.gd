@@ -8,8 +8,10 @@ extends Control
 
 
 func _ready():
-	if not JellyfinApi.is_authorization_valid:
+	if JellyfinApi.wait_for_login: # if we are returned to this scene, wait for relog
 		return
+	
+	# else continue with data stored in file, if it exists
 	var config = ConfigFile.new()
 	var error = config.load("user://login_info.cfg")
 	if error != OK:
@@ -23,6 +25,7 @@ func _ready():
 		JellyfinApi.weird_header.push_back('Token=%s' % Global.access_token)
 		JellyfinApi.json_headers[3] = ", ".join(JellyfinApi.weird_header)
 		JellyfinApi.image_headers[3] = ", ".join(JellyfinApi.weird_header)
+		
 		Global.goto_scene(Global.SCENE_PATH["main_scene"])
 
 
@@ -43,6 +46,7 @@ func _login():
 		JellyfinApi.weird_header.push_back('Token=%s' % Global.access_token)
 		JellyfinApi.json_headers[3] = ", ".join(JellyfinApi.weird_header)
 		JellyfinApi.image_headers[3] = ", ".join(JellyfinApi.weird_header)
+		
 		Global.goto_scene(Global.SCENE_PATH["main_scene"])
 
 
