@@ -1,11 +1,11 @@
-extends ScrollContainer
+extends SmoothScrollContainer
 class_name CollectionView
 
 
 
 signal element_pressed(element: ItemDisplay)
 
-const ITEMS_TO_LOAD = 40
+const ITEMS_TO_LOAD = 60
 const SCROLL_THRESHOLD = 1500
 
 var item_info
@@ -20,6 +20,7 @@ var items_last_loaded: int
 
 
 func _ready():
+	self.scrolled_down.connect(_on_scrollbar_scrolling)
 	get_v_scroll_bar().scrolling.connect(_on_scrollbar_scrolling)
 	if item_info is Dictionary: # we're in a collection folder
 		collection_items = await JellyfinApi.get_items(item_info["Id"])

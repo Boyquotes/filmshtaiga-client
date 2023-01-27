@@ -4,6 +4,7 @@
 		"disable_3d": true,
 		"disable_3d_physics": true,
 		"disable_navigation": true,
+		"opengl3": false,
 		"openxr": false
 	},
 	"disabled_classes": [
