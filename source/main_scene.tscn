@@ -5,7 +5,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_327vd"]
 bg_color = Color(0, 0, 0, 1)
-border_width_bottom = 3
+border_width_bottom = 2
 border_color = Color(0.501961, 0.164706, 0.521569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7j6rw"]
@@ -49,6 +49,7 @@ custom_minimum_size = Vector2(160, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 0
 text = "Back"
 
 [node name="HomeButton" type="Button" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]
@@ -56,6 +57,7 @@ custom_minimum_size = Vector2(160, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 0
 text = "Home"
 
 [node name="Spacer2" type="Control" parent="RootContainer/TopBarPanel/MarginContainer/TopBarHbox"]

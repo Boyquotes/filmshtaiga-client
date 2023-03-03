@@ -69,6 +69,7 @@ tween_duration = 0.12
 
 [node name="SeasonContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1

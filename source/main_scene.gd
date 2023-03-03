@@ -61,6 +61,7 @@ func _on_search_bar_text_submitted(new_text):
 func _on_back_button_pressed():
 	if not search_bar.get_text().is_empty():
 		search_bar.set_text("")
+	search_bar.release_focus()
 		
 	if previous_subscene == null:
 		if not current_subscene is FrontPage:
@@ -76,6 +77,7 @@ func _on_back_button_pressed():
 func _on_home_button_pressed():
 	if not search_bar.get_text().is_empty():
 		search_bar.set_text("")
+	search_bar.release_focus()
 	
 	change_view(Global.SCENE_PATH["front_page"])
 
