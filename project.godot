@@ -25,7 +25,6 @@ Global="*res://source/global.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
-window/size/mode=2
 
 [input]
 

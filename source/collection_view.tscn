@@ -9,6 +9,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8hf5g")
+friction_scroll = 0.96
 
 [node name="HFlowContainer" type="HFlowContainer" parent="."]
 layout_mode = 2

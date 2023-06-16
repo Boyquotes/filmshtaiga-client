@@ -94,3 +94,35 @@ func _on_settings_menu_id_pressed(id):
 func _on_vlc_dir_edit_text_changed(new_text):
 	Global.vlc_path = new_text
 	print(Global.vlc_path)
+
+
+func _on_button_pressed() -> void:
+	var series_metadata:= []
+	var first_eps_metadata:= []
+	var series_bgsub:= []
+	for series in current_subscene.collection_items:
+		var metadata = await JellyfinApi.get_item_metadata(series["Id"])
+		var seasons = await JellyfinApi.get_items(series["Id"])
+		if seasons.is_empty():
+			continue
+		var episodes = await JellyfinApi.get_items(seasons[0]["Id"])
+		if episodes.is_empty():
+			continue
+		var first_ep_metadata = await JellyfinApi.get_item_metadata(episodes[0]["Id"])
+		first_eps_metadata.push_back(first_ep_metadata)
+		series_metadata.push_back(metadata)
+		print("here")
+	assert(series_metadata.size() == first_eps_metadata.size())
+	for index in first_eps_metadata.size():
+		if first_eps_metadata[index].has("MediaStreams"):
+			for media_stream in first_eps_metadata[index]["MediaStreams"]:
+				if media_stream["Codec"] == "subrip" or media_stream["Codec"] == "srt":
+					if media_stream.has("Language"):
+						if media_stream["Language"] == "bul":
+							series_bgsub.push_back(series_metadata[index])
+	for movie in series_bgsub:
+		if "000bgsub" in movie["Tags"]:
+			continue
+		movie["Tags"].push_back("000bgsub")
+		print(movie["Name"])
+		await JellyfinApi.post_item_metadata(movie["Id"], movie)

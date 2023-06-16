@@ -3,9 +3,9 @@ extends HBoxContainer
 
 
 var item_info
-var season_items: Array[Dictionary]
+var season_items: Array
 var loaded_images_counter:= 0
-var episode_items: Array[Dictionary]
+var episode_items: Array
 
 @onready var series_image:= $VBoxContainer/PanelContainer/SeriesImage
 @onready var info_container:= $InfoContainer

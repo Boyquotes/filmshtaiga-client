@@ -5,7 +5,7 @@ class_name FrontPage
 
 signal element_pressed(element: ItemDisplay)
 
-var library_items: Array[Dictionary]
+var library_items: Array
 var loaded_images_counter:= 0
 
 @onready var library_container:= $VBoxContainer/LibraryContainer

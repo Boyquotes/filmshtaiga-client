@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://3c4wfofywo74" path="res://themes/main_theme.tres" id="1_24oht"]
 [ext_resource type="Script" path="res://source/series_view.gd" id="2_o5p4a"]
-[ext_resource type="Script" path="res://source/smooth_scroll_container.gd" id="3_po84i"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="3_w3lqv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i01uv"]
 corner_radius_top_left = 4
@@ -58,14 +58,13 @@ layout_mode = 2
 
 [node name="Overview" type="RichTextLabel" parent="InfoContainer"]
 layout_mode = 2
-fit_content_height = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 vertical_scroll_mode = 3
-script = ExtResource("3_po84i")
-tween_duration = 0.12
+script = ExtResource("3_w3lqv")
+friction_scroll = 0.96
 
 [node name="SeasonContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2

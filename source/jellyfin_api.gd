@@ -40,7 +40,7 @@ func login(server: String, username: String, password: String) -> Variant:
 	return response
 
 
-func item_search(search_term: String) -> Array[Dictionary]:
+func item_search(search_term: String) -> Array:
 	var encoded_term: String = search_term.uri_encode()
 	var path = ("/Items?userId=%s&searchTerm=%s&recursive=true&includeItemTypes=Movie,Series"
 			% [Global.user_id, encoded_term])
@@ -51,7 +51,7 @@ func item_search(search_term: String) -> Array[Dictionary]:
 		return []
 
 
-func get_items(parent_id: String = "") -> Array[Dictionary]:
+func get_items(parent_id: String = "") -> Array:
 	var path = ("/Items?userId=%s&parentId=%s&enableImages=true&sortBy=SortName&fields=Overview"
 			% [Global.user_id, parent_id])
 	var response = await _http_request(path, HTTPClient.METHOD_GET, json_headers)
@@ -59,6 +59,22 @@ func get_items(parent_id: String = "") -> Array[Dictionary]:
 		return response["Items"]
 	else:
 		return []
+
+
+func get_item_metadata(item_id: String) -> Variant:
+	var path = "/Users/%s/Items/%s" % [Global.user_id, item_id]
+	var response = await _http_request(path, HTTPClient.METHOD_GET, json_headers)
+	if response:
+		return response
+	else:
+		return []
+
+
+func post_item_metadata(item_id: String, data: Dictionary):
+	var path = "/Items/%s" % item_id
+	var response = await _http_request(path, HTTPClient.METHOD_POST, json_headers, JSON.stringify(data))
+	if response:
+		print(response)
 
 
 func request_image(item_id: String, image_type: String, max_height:= 220, max_width:= 280):
@@ -75,7 +91,7 @@ func get_video_stream(item_id):
 func _http_request(path: String, method: int, headers: PackedStringArray, body: String = ""):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.request(url + path, headers, false, method, body)
+	http_request.request(url + path, headers, method, body)
 	
 	var response = await http_request.request_completed
 	http_request.queue_free()
@@ -111,6 +127,7 @@ func _http_request(path: String, method: int, headers: PackedStringArray, body: 
 		print(response[Response.RESULT])
 		print(response[Response.CODE])
 		print(response[Response.HEADERS])
+		print(response[Response.BODY].get_string_from_utf8())
 		printerr("unhandled http response header type")
 		return 0
 

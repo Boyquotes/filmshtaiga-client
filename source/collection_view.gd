@@ -9,7 +9,7 @@ const ITEMS_TO_LOAD = 60
 const SCROLL_THRESHOLD = 1500
 
 var item_info
-var collection_items: Array[Dictionary]
+var collection_items: Array
 
 var loaded_images:= 0
 var index_to_load_next:= 0
@@ -20,7 +20,7 @@ var items_last_loaded: int
 
 
 func _ready():
-	self.scrolled_down.connect(_on_scrollbar_scrolling)
+	super()
 	get_v_scroll_bar().scrolling.connect(_on_scrollbar_scrolling)
 	if item_info is Dictionary: # we're in a collection folder
 		collection_items = await JellyfinApi.get_items(item_info["Id"])
@@ -36,6 +36,7 @@ func _on_scrollbar_scrolling():
 
 
 func _gui_input(event):
+	super(event)
 	if event.is_action_pressed("scroll_down"):
 		if get_v_scroll() > item_container.size.y - SCROLL_THRESHOLD:
 			if not index_to_load_next == collection_items.size() and loaded_images == ITEMS_TO_LOAD:
